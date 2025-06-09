@@ -1,0 +1,11 @@
+# Ignore environment variables file
+.env
+
+# Ignore uploaded images directory
+src/uploads/
+
+# (Optional) Ignore SQLite database files
+src/database/users.db
+
+# Ignore node_modules directory
+node_modules/
