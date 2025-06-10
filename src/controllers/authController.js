@@ -6,7 +6,7 @@ import db from '../database/db.js'; // Import the database connection
 export const signup = async (req, res) => {
     const { username, email, password } = req.body; // Extract user data from the request body
     const hashedPassword = await bcrypt.hash(password, 10); // Hash the user's password with bcrypt
-    const profilePicture = req.file ? `/src/uploads/${req.file.filename}` : null; // Set profile picture path if file uploaded
+    const profilePicture = req.file ? `/uploads/${req.file.filename}` : null; // Set profile picture path if file uploaded
 
     // SQL query to insert the new user into the database
     const query = `INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)`;

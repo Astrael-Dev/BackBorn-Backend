@@ -15,7 +15,7 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 app.use("/api", authRoutes); // Mount authentication routes at /api
 app.use("/api/users", userRoutes); // Mount user routes at /api/users
 
-app.use("/src/uploads", express.static("src/uploads")); // Serve static files (like images) from the src/uploads directory
+app.use("/uploads", express.static("src/uploads")); // Serve static files (like images) from the src/uploads directory
 
 // Middleware to handle 404 errors for unknown routes
 app.use((req, res, next) => {
