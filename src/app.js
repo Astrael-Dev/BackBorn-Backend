@@ -7,7 +7,7 @@ dotenv.config(); // Load environment variables from .env file
 
 const app = express(); // Create an Express application instance
 app.use(cors()); // Use CORS middleware to allow cross-origin requests
-const PORT = process.env.PORT || 3000; // Set the server port from environment or default to 3000
+const PORT = process.env.PORT || 10000; // Set the server port from environment or default to 3000
 
 app.use(express.json()); // Middleware to parse incoming JSON requests
 
