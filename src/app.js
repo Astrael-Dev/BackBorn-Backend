@@ -2,12 +2,12 @@ import express from 'express'; // Import Express framework
 import cors from 'cors'; // Import CORS middleware for handling cross-origin requests
 import authRoutes from './routes/auth.js'; // Import authentication routes
 import userRoutes from './routes/user.js'; // Import user-related routes
-import dotenv from 'dotenv'; // Import dotenv to load environment variables
-dotenv.config(); // Load environment variables from .env file
+import dotenvFlow from 'dotenv-flow'; // Import dotenv-flow for environment variable management
+dotenvFlow.config(); // Load environment variables from .env files
 
 const app = express(); // Create an Express application instance
 app.use(cors()); // Use CORS middleware to allow cross-origin requests
-const PORT = process.env.PORT || 3000; // Set the server port from environment or default to 3000
+const PORT = process.env.PORT || 10000; // Set the server port from environment or default to 3000
 
 app.use(express.json()); // Middleware to parse incoming JSON requests
 
