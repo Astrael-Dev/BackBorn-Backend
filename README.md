@@ -53,7 +53,8 @@ Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authe
 ├── 📄 .gitignore
 ├── 📄 package-lock.json
 ├── 📄 package.json
-└── 📘 README.m```
+└── 📘 README.m
+```
 
 ---
 
