@@ -1,4 +1,9 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![status-In development-yellow](https://img.shields.io/badge/statut-En%20d%C3%A9veloppement-yellow)
+![Platform: Render](https://img.shields.io/badge/platform-Render-3a8dde?logo=render&logoColor=white)
+
+---
+
 ![Node.js](https://img.shields.io/badge/node-%3E=18.0.0-green)
 ![Express](https://img.shields.io/badge/express-5.x-blue)
 ![SQLite3](https://img.shields.io/badge/sqlite3-lightgrey)
