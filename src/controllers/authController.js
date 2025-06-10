@@ -4,18 +4,29 @@ import db from '../database/db.js'; // Import the database connection
 
 // Controller for user signup (registration)
 export const signup = async (req, res) => {
-    const { username, email, password } = req.body; // Extract user data from the request body
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the user's password with bcrypt
-    const profilePicture = req.file ? `/uploads/${req.file.filename}` : null; // Set profile picture path if file uploaded
+    const { username, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const profilePicture = req.file ? `/uploads/${req.file.filename}` : null;
 
-    // SQL query to insert the new user into the database
     const query = `INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)`;
     db.run(query, [username, email, hashedPassword, profilePicture], function (err) {
         if (err) {
-            console.error('Error during signup:', err.message); // Log error if insertion fails
-            return res.status(500).json({ error: 'Internal server error' }); // Respond with error
+            console.error('Error during signup:', err.message);
+            return res.status(500).json({ error: 'Internal server error' });
         }
-        res.status(201).json({ message: 'User created successfully', userId: this.lastID }); // Respond with success and user ID
+        // Fetch the newly created user
+        db.get('SELECT * FROM users WHERE id = ?', [this.lastID], (err, user) => {
+            if (err || !user) {
+                return res.status(500).json({ error: 'User creation failed' });
+            }
+            const token = generateToken(user);
+            res.status(201).json({
+                message: 'User created successfully',
+                userId: user.id,
+                profile_picture: user.profile_picture,
+                token
+            });
+        });
     });
 };
 
