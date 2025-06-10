@@ -6,6 +6,15 @@ import { fileURLToPath } from 'url'; // Import utility to convert file URLs to f
 // Get the directory name of the current module file (ESM equivalent of __dirname)
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Check if the 'uploads' directory exists, and create it if it doesn't
+const uploadsDir = path.join(__dirname, '../uploads');
+if (fs.existsSync(uploadsDir)) {
+  console.error('Uploads folder already exists');
+} else {
+  fs.mkdirSync(uploadsDir, { recursive: true });
+  console.log('Uploads folder initialized successfully.');
+}
+
 // Create or open the SQLite database file 'users.db' in the current directory
 const db = new sqlite3.Database(path.join(__dirname, 'users.db'));
 

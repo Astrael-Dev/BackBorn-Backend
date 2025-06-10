@@ -6,28 +6,37 @@ import db from '../database/db.js'; // Import the database connection
 export const signup = async (req, res) => {
     const { username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const profilePicture = req.file ? `/uploads/${req.file.filename}` : null;
+    const profilePicture = req.file ? `/src/uploads/${req.file.filename}` : null;
 
-    const query = `INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)`;
-    db.run(query, [username, email, hashedPassword, profilePicture], function (err) {
-        if (err) {
-            console.error('Error during signup:', err.message);
-            return res.status(500).json({ error: 'Internal server error' });
-        }
-        // Fetch the newly created user
-        db.get('SELECT * FROM users WHERE id = ?', [this.lastID], (err, user) => {
-            if (err || !user) {
-                return res.status(500).json({ error: 'User creation failed' });
+    // Check if email or username already exists
+    db.get(
+        'SELECT * FROM users WHERE email = ? OR username = ?',
+        [email, username],
+        (err, user) => {
+            if (err) {
+                console.error('Error during signup:', err.message);
+                return res.status(500).json({ error: 'Internal server error' });
             }
-            const token = generateToken(user);
-            res.status(201).json({
-                message: 'User created successfully',
-                userId: user.id,
-                profile_picture: user.profile_picture,
-                token
+            if (user) {
+                if (user.email === email) {
+                    return res.status(400).json({ error: 'Email already registered.' });
+                }
+                if (user.username === username) {
+                    return res.status(400).json({ error: 'Username already used.' });
+                }
+            }
+
+            // SQL query to insert the new user into the database
+            const query = `INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)`;
+            db.run(query, [username, email, hashedPassword, profilePicture], function (err) {
+                if (err) {
+                    console.error('Error during signup:', err.message);
+                    return res.status(500).json({ error: 'Internal server error' });
+                }
+                res.status(201).json({ message: 'User created successfully', userId: this.lastID });
             });
-        });
-    });
+        }
+    );
 };
 
 // Controller for user login (authentication)

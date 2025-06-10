@@ -2,28 +2,11 @@ import express from 'express'; // Import Express framework
 import cors from 'cors'; // Import CORS middleware for handling cross-origin requests
 import authRoutes from './routes/auth.js'; // Import authentication routes
 import userRoutes from './routes/user.js'; // Import user-related routes
-import dotenv from 'dotenv'; // Import dotenv to load environment variables
-dotenv.config(); // Load environment variables from .env file
+import dotenvFlow from 'dotenv-flow'; // Import dotenv-flow for environment variable management
+dotenvFlow.config(); // Load environment variables from .env files
 
 const app = express(); // Create an Express application instance
-const allowedOrigins = [
-  'http://localhost:10000',
-  'http://localhost:5500',
-  'http://localhost:3000',
-  'https://backborn-frontend.onrender.com'
-];
-
-app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(cors()); // Use CORS middleware to allow cross-origin requests
 const PORT = process.env.PORT || 10000; // Set the server port from environment or default to 3000
 
 app.use(express.json()); // Middleware to parse incoming JSON requests
@@ -32,7 +15,7 @@ app.use(express.json()); // Middleware to parse incoming JSON requests
 app.use("/api", authRoutes); // Mount authentication routes at /api
 app.use("/api/users", userRoutes); // Mount user routes at /api/users
 
-app.use("/uploads", express.static("src/uploads")); // Serve static files (like images) from the src/uploads directory
+app.use("/src/uploads", express.static("src/uploads")); // Serve static files (like images) from the src/uploads directory
 
 // Middleware to handle 404 errors for unknown routes
 app.use((req, res, next) => {
