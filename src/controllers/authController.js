@@ -4,19 +4,39 @@ import db from '../database/db.js'; // Import the database connection
 
 // Controller for user signup (registration)
 export const signup = async (req, res) => {
-    const { username, email, password } = req.body; // Extract user data from the request body
-    const hashedPassword = await bcrypt.hash(password, 10); // Hash the user's password with bcrypt
-    const profilePicture = req.file ? `/src/uploads/${req.file.filename}` : null; // Set profile picture path if file uploaded
+    const { username, email, password } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const profilePicture = req.file ? `/src/uploads/${req.file.filename}` : null;
 
-    // SQL query to insert the new user into the database
-    const query = `INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)`;
-    db.run(query, [username, email, hashedPassword, profilePicture], function (err) {
-        if (err) {
-            console.error('Error during signup:', err.message); // Log error if insertion fails
-            return res.status(500).json({ error: 'Internal server error' }); // Respond with error
+    // Check if email or username already exists
+    db.get(
+        'SELECT * FROM users WHERE email = ? OR username = ?',
+        [email, username],
+        (err, user) => {
+            if (err) {
+                console.error('Error during signup:', err.message);
+                return res.status(500).json({ error: 'Internal server error' });
+            }
+            if (user) {
+                if (user.email === email) {
+                    return res.status(400).json({ error: 'Email already registered.' });
+                }
+                if (user.username === username) {
+                    return res.status(400).json({ error: 'Username already used.' });
+                }
+            }
+
+            // SQL query to insert the new user into the database
+            const query = `INSERT INTO users (username, email, password, profile_picture) VALUES (?, ?, ?, ?)`;
+            db.run(query, [username, email, hashedPassword, profilePicture], function (err) {
+                if (err) {
+                    console.error('Error during signup:', err.message);
+                    return res.status(500).json({ error: 'Internal server error' });
+                }
+                res.status(201).json({ message: 'User created successfully', userId: this.lastID });
+            });
         }
-        res.status(201).json({ message: 'User created successfully', userId: this.lastID }); // Respond with success and user ID
-    });
+    );
 };
 
 // Controller for user login (authentication)
