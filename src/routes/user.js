@@ -1,13 +1,26 @@
-import express from 'express'; // Import the Express framework
-// Import your authentication middleware
-import { authenticateToken } from '../middlewares/authMiddleware.js'; // Import the JWT authentication middleware
+import express from 'express';
+import { authenticateToken } from '../middlewares/authMiddleware.js';
+import db from '../database/db.js';
 
-const router = express.Router(); // Create a new router instance
+const router = express.Router();
 
-// Protected route: only accessible if the token is valid
-router.get('/profile', authenticateToken, (req, res) => {
-// Here, we can access req.user, which contains the decoded token data from the JWT
-  res.json({ message: 'Profile data', user: req.user }); // Respond with profile data and user info
+// Route pour récupérer le profil complet de l'utilisateur connecté
+router.get('/me', authenticateToken, (req, res) => {
+  db.get(
+    'SELECT id, username, email, profile_picture, created_at FROM users WHERE id = ?',
+    [req.user.id],
+    (err, user) => {
+      if (err) return res.status(500).json({ error: 'Database error' });
+      if (!user) return res.status(404).json({ error: 'User not found' });
+
+      // Ajoute l'URL complète si une image existe
+      if (user.profile_picture) {
+        user.profile_picture = `${req.protocol}://${req.get('host')}${user.profile_picture}`;
+      }
+      res.json({ user });
+    }
+  );
 });
 
-export default router; // Export the router for use in the main app
+// ...autres routes existantes...
+export default router;
