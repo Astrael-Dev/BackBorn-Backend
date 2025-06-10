@@ -1,4 +1,3 @@
-```markdown
 # BackBorn Backend
 
 Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authentication, registration, and profile management, built with Express and SQLite3.
