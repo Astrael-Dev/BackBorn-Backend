@@ -26,6 +26,7 @@ Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authe
 
 ## 📁 Project Structure
 
+```
 📁 BACKBORN BACKEND
 ├── 📁 node_modules
 ├── 📁 src
@@ -52,8 +53,7 @@ Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authe
 ├── 📄 .gitignore
 ├── 📄 package-lock.json
 ├── 📄 package.json
-└── 📘 README.md
-
+└── 📘 README.m```
 
 ---
 
