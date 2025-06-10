@@ -1,39 +1,38 @@
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![status-In development-yellow](https://img.shields.io/badge/statut-En%20d%C3%A9veloppement-yellow)
-![Platform: Render](https://img.shields.io/badge/platform-Render-3a8dde?logo=render&logoColor=white)
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+![status-In development-yellow](https://img.shields.io/badge/Status-In%20development-yellow)
+![Platform: Render](https://img.shields.io/badge/platform-Render-8e44ad?logo=render&logoColor=white)
 
 ---
 
-![Node.js](https://img.shields.io/badge/node-%3E=18.0.0-green)
-![Express](https://img.shields.io/badge/express-5.x-blue)
-![SQLite3](https://img.shields.io/badge/sqlite3-lightgrey)
+![Node.js v22.15.0](https://img.shields.io/badge/node-v22.15.0-339933?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/express-5.1.0-orange)
+![SQLite3 v5.1.7](https://img.shields.io/badge/sqlite3-5.1.7-20b2aa?logo=sqlite&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-brightgreen)
 
 # BackBorn Backend
 
-Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authentication, registration, and profile management, built with Express and SQLite3.
+Welcome to **BackBorn Backend** — a simple Node.js REST API for user authentication, registration, and profile management, built with Express and SQLite3.
 
 ---
 
 ## 🚀 Features
 
 - **User Registration & Login**  
-  Secure authentication with hashed passwords and JWT tokens.
+    Secure authentication with hashed passwords and JWT tokens.
 
 - **Profile Picture Upload**  
-  Users can upload a profile image during signup.
+    Users can upload a profile image during signup.
 
 - **Protected Routes**  
-  Access user data and stats only with a valid JWT.
+    Access user data and stats only with a valid JWT.
 
 - **SQLite Database**  
-  Lightweight, file-based storage for easy setup and portability.
+    Lightweight, file-based storage for easy setup and portability.
 
 - **Environment-Based Configuration**  
-  Seamless switching between development and production using `.env` files and [dotenv-flow](https://www.npmjs.com/package/dotenv-flow).
+    Seamless switching between development and production using `.env` files and [dotenv-flow](https://www.npmjs.com/package/dotenv-flow).
 
 ---
-
 
 ## 📁 Project Structure
 
@@ -149,4 +148,3 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 ---
 
 **BackBorn Backend** — Simple, modern, and ready for the BackBorn project.
-```
