@@ -65,7 +65,8 @@ Welcome to **BackBorn Backend** — a simple Node.js REST API for user authentic
 ├── 📄 .gitignore
 ├── 📄 package-lock.json
 ├── 📄 package.json
-└── 📘 README.md
+├── 📖 LICENSE.md
+└── 📖 README.md
 ```
 
 ---
@@ -143,10 +144,8 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 
 ---
 
-## 📄 License
+## 📜 License
 
-[MIT](LICENSE)
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
 
 ---
-
-**BackBorn Backend** — Simple, modern, and ready for the BackBorn project.
