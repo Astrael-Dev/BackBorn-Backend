@@ -3,7 +3,7 @@
 ![platform: Render](https://img.shields.io/badge/platform-Render-8e44ad?logo=render&logoColor=white)
 
 ---
-
+![JavaScript](https://img.shields.io/badge/javascript-ES6+-f7df1e?logo=javascript&logoColor=black)
 ![Node.js v22.15.0](https://img.shields.io/badge/node-v22.15.0-339933?logo=node.js&logoColor=white)
 ![Express v5.1.0](https://img.shields.io/badge/express-5.1.0-orange?logo=express&logoColor=white)
 ![SQLite3 v5.1.7](https://img.shields.io/badge/sqlite3-5.1.7-20b2aa?logo=sqlite&logoColor=white)
