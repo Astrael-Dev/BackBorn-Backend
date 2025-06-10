@@ -6,7 +6,24 @@ import dotenv from 'dotenv'; // Import dotenv to load environment variables
 dotenv.config(); // Load environment variables from .env file
 
 const app = express(); // Create an Express application instance
-app.use(cors()); // Use CORS middleware to allow cross-origin requests
+const allowedOrigins = [
+  'http://localhost:10000',
+  'http://localhost:5500',
+  'http://localhost:3000',
+  'https://backborn-frontend.onrender.com'
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 const PORT = process.env.PORT || 10000; // Set the server port from environment or default to 3000
 
 app.use(express.json()); // Middleware to parse incoming JSON requests
