@@ -1,3 +1,9 @@
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Node.js](https://img.shields.io/badge/node-%3E=18.0.0-green)
+![Express](https://img.shields.io/badge/express-5.x-blue)
+![SQLite3](https://img.shields.io/badge/sqlite3-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-brightgreen)
+
 # BackBorn Backend
 
 Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authentication, registration, and profile management, built with Express and SQLite3.
@@ -53,7 +59,7 @@ Welcome to the **BackBorn Backend** — a simple Node.js REST API for user authe
 ├── 📄 .gitignore
 ├── 📄 package-lock.json
 ├── 📄 package.json
-└── 📘 README.m
+└── 📘 README.md
 ```
 
 ---
