@@ -11,9 +11,10 @@
 
 ---
 
-# BackBorn Backend
+Welcome to **BackBorn Backend** — the API engine for the BackBorn project, a full-stack learning journey by Astrael-Dev.
 
-Welcome to **BackBorn Backend** — a simple Node.js REST API for user authentication, registration, and profile management, built with Express and SQLite3.
+This project is the companion to [BackBorn-Frontend](https://github.com/Astrael-Dev/BackBorn-Frontend), providing a secure, scalable, and modern RESTful backend built with Node.js, Express, and SQLite3.  
+It handles user authentication, registration, profile management, and image uploads, serving as the essential foundation for the BackBorn web experience.
 
 ---
 
